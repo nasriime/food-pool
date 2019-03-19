@@ -2,38 +2,49 @@
 <p>This page can be accessed by all authenticated users.</p>
 <div>
     Current user from secure api end point:
-    <ul>
+    <ul class="mb-3">
         <li *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
     </ul>
+    <div class="row">
+        <form class="col-sm-6">
+            <div class="form-group">
+                <input type="text"
+                name="search"
+                class="form-control" 
+                placeholder="Search Here..." 
+                [(ngModel)]="query" 
+                (input)="filterItem()">
+            </div>
+        </form>
+    </div>
+ 
 
-    <form>
-        <div class="form-group">
-          <input type="text"
-            name="search"
-            class="form-control" 
-            placeholder="Search Here..." 
-            [(ngModel)]="query" 
-            (input)="filterItem()">
-        </div>
-    </form>
-
-    <h2>Appetizers</h2>
-    <ul>
-        <li *ngFor="let item of filteredAppetizers">
-            <p>{{ item.name }}</p>
-            <p>{{ item.price }}</p>
-            <p>{{ item.description }}</p>
+    <h2 class="mb-4">Appetizers</h2>
+    <ul class="row">
+        <li class="col-sm-6 col-md-3 d-block" *ngFor="let item of filteredAppetizers">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="text-danger">{{ item.price }} $</p>
+                    <p class="card-text font-weight-normal">{{ item.description }}</p>
+                </div>
+              </div>
         </li>
-        <li *ngIf="filteredAppetizers.length == 0">No Appetizers with this name</li>
     </ul>
+    <h6 class="mb-5" *ngIf="filteredAppetizers.length == 0">No Appetizers with this name</h6>
 
-    <h2>Salads</h2>
-    <ul>
-        <li *ngFor="let item of filteredSalads">
-            <p>{{ item.name }}</p>
-            <p>{{ item.price }}</p>
-            <p>{{ item.description }}</p>
+    <h2 class="mb-4">Salads</h2>
+    <ul class="row">
+        <li class="col-sm-6 col-md-3 d-block" *ngFor="let item of filteredSalads">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="text-danger">{{ item.price }} $</p>
+                    <p class="card-text font-weight-normal">{{ item.description }}</p>
+                </div>
+                </div>
         </li>
-        <li *ngIf="filteredSalads.length == 0">No Salads with this name</li>
     </ul>
+    <h6 *ngIf="filteredSalads.length == 0">No Salads with this name</h6>
+
 </div>
