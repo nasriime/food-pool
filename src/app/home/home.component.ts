@@ -8,6 +8,11 @@ import { UserService, AuthenticationService } from '@/_services';
 export class HomeComponent {
     currentUser: User;
     userFromApi: User;
+    query: string;
+    appetizers: [];
+    filteredAppetizers: any[]= [];
+    salads: [];
+    filteredSalads: any[]= [];
 
     constructor(
         private userService: UserService,
@@ -20,5 +25,28 @@ export class HomeComponent {
         this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
             this.userFromApi = user;
         });
+        this.userService.getMenu().subscribe(items => {
+            this.appetizers = items.categories[0].items;
+            this.salads = items.categories[1].items;
+            this.assignCopy();
+        });
     }
+
+    assignCopy(){
+        this.filteredAppetizers = Object.assign([], this.appetizers);
+        this.filteredSalads = Object.assign([], this.salads);
+     }
+
+     filterItem(){
+        if(!this.query){
+            this.assignCopy();
+        }
+        this.filteredAppetizers = Object.assign([], this.appetizers).filter(
+           item => item.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+        )
+        this.filteredSalads = Object.assign([], this.salads).filter(
+            item => item.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+         )
+     }
+
 }

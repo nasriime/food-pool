@@ -1,5 +1,11 @@
-# angular-7-role-based-authorization-example
+# Food-pool
 
-Angular 7 - Role Based Authorization Example with Webpack 4
+1- Clone the repo.
+2- install project dependencies "npm install".
+3- write the command "npm start".
 
-To see a demo and further details go to http://jasonwatmore.com/post/2018/11/22/angular-7-role-based-authorization-tutorial-with-example
+
+## Documentation:
+
+1- there are two roles for simple demonstration (Admin and User).
+2- search functionality works for all categories by name.

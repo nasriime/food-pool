@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '@/_models';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -13,5 +14,9 @@ export class UserService {
 
     getById(id: number) {
         return this.http.get<User>(`${config.apiUrl}/users/${id}`);
+    }
+
+    public getMenu(): Observable<any> {
+        return this.http.get("/menu.json");
     }
 }

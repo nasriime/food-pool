@@ -1,10 +1,39 @@
-﻿<h1>Home</h1>
-<p>You're logged in with Angular 7 & JWT!!</p>
-<p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
+﻿<p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
 <p>This page can be accessed by all authenticated users.</p>
 <div>
     Current user from secure api end point:
     <ul>
         <li *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
+    </ul>
+
+    <form>
+        <div class="form-group">
+          <input type="text"
+            name="search"
+            class="form-control" 
+            placeholder="Search Here..." 
+            [(ngModel)]="query" 
+            (input)="filterItem()">
+        </div>
+    </form>
+
+    <h2>Appetizers</h2>
+    <ul>
+        <li *ngFor="let item of filteredAppetizers">
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+            <p>{{ item.description }}</p>
+        </li>
+        <li *ngIf="filteredAppetizers.length == 0">No Appetizers with this name</li>
+    </ul>
+
+    <h2>Salads</h2>
+    <ul>
+        <li *ngFor="let item of filteredSalads">
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+            <p>{{ item.description }}</p>
+        </li>
+        <li *ngIf="filteredSalads.length == 0">No Salads with this name</li>
     </ul>
 </div>
